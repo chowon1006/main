@@ -3,6 +3,9 @@
 
 <html>
     <head>
+      <script type="text/javascript" src="Js/test.js"></script>>
+      <script type="text/javascript" defer src="Js/search.js"></script>>
+      <script type="text/javascript" defer src="Js/popup.js"></script>>
         <meta name="author" content="학번">
 <meta name="keywords" content="computer">
 <base href="http://127.0.0.1:5500">
@@ -14,7 +17,7 @@
   </head>
     </head>
 
-    <div style="background-color: black;">
+      <body style="background-color: black;" onload="pop_up();"></body>
 
         <div class="container-fluid">
         <div style="display: flex; justify-content: center;">
@@ -56,10 +59,14 @@
                             <a class="nav-link disabled" aria-disabled="true">게시판</a>
                           </li>
                         </ul>
-                        <form class="d-flex" role="search">
+                        <!-- <form class="d-flex" role="search">
                           <input class="form-control me-2" type="search" placeholder="검색어입력" aria-label="Search">
-                          <button class="btn btn-outline-success" type="submit">검색</button>
-                        </form>
+                          <button class="btn btn-outline-success" id="search_btn" type="submit">검색</button>
+                        </form> -->
+                        <form class="d-flex" role="search" onsubmit="return googleSearch();">
+                          <input class="form-control me-2" id="search_input" name="q" type="search" placeholder="키워드 입력" aria-label="Search">
+                          <button class="btn btn-outline-success" id="search_btn" type="submit">검색하기</button>
+                          </form>
                       </div>
                     </div>
                   </nav>
