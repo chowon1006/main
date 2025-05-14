@@ -64,7 +64,12 @@ const check_xss = (input) => {
 
         // 전역 변수 추가, 맨 위 위치
         const idsave_check = document.getElementById('idSaveCheck');
-        
+        const payload = {
+        id: emailValue,
+        exp: Math.floor(Date.now() / 1000) + 3600 // 1시간 (3600초)
+        };
+ const jwtToken = generateJWT(payload);
+
         if (emailValue === '') {
         alert('이메일을입력하세요.');
         return false;
@@ -116,8 +121,11 @@ const check_xss = (input) => {
        
         console.log('이메일:', emailValue);
         console.log('비밀번호:', passwordValue);
+
         session_set(); // 세션 생성
+        localStorage.setItem('jwt_token', jwtToken);
         loginForm.submit();
     };
+
         document.getElementById("login_btn").addEventListener('click', check_input);
    
