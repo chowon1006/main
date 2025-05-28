@@ -1,4 +1,9 @@
+import { session_set, session_get, session_check } from './session.js';
+ import { encrypt_text, decrypt_text } from './crypto.js';
+ import { generateJWT, checkAuth } from './jwt_token.js';
+
 function init(){ // 로그인 폼에 쿠키에서 가져온 아이디 입력
+
     const emailInput = document.getElementById('typeEmailX');
         const idsave_check = document.getElementById('idSaveCheck');
         let get_id = getCookie("id");
@@ -8,6 +13,9 @@ function init(){ // 로그인 폼에 쿠키에서 가져온 아이디 입력
        }
        session_check(); // 세션 유무 검사
      }
+      document.addEventListener('DOMContentLoaded', () => {
+        init();
+ });
 
 const check_xss = (input) => {
     // DOMPurify 라이브러리 로드 (CDN 사용)
