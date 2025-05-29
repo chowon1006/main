@@ -1,20 +1,23 @@
-// 마커를 담을 배열입니다
-var markers = [];
- // 장소 검색 객체를 생성합니다
-var ps = new kakao.maps.services.Places();
- // 검색 결과 목록이나 마커를 클릭했을 때 장소명을 표출할 인포윈도우를 생성합
-니다
-var infowindow = new kakao.maps.InfoWindow({zIndex:1});
- // 키워드로 장소를 검색합니다
-searchPlaces();
- // 생략…
- 
+var markers=[];
+
 var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
 var options = { //지도를 생성할 때 필요한 기본 옵션
 center: new kakao.maps.LatLng(37.380855, 126.927691), //지도의 중심좌표.
  level: 3 //지도의 레벨(확대, 축소 정도)
  };
  var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
+
+
+ map.addOverlayMapTypeId(kakao.maps.MapTypeId.TERRAIN);
+// 마커가 표시될 위치입니다 
+var markerPosition  = new kakao.maps.LatLng(33.450701, 126.570667); 
+
+// 마커를 생성합니다
+var marker = new kakao.maps.Marker({
+    position: markerPosition
+});
+
+
 
  // 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
 var mapTypeControl = new kakao.maps.MapTypeControl();
@@ -24,15 +27,8 @@ map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
 var zoomControl = new kakao.maps.ZoomControl();
  map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
  // 지도에 지형정보를 표시하도록 지도타입을 추가합니다
- 
-map.addOverlayMapTypeId(kakao.maps.MapTypeId.TERRAIN);
-// 마커가 표시될 위치입니다 
-var markerPosition  = new kakao.maps.LatLng(33.450701, 126.570667); 
 
-// 마커를 생성합니다
-var marker = new kakao.maps.Marker({
-    position: markerPosition
-});
+ 
 // 지도에 마커를 표시합니다
 marker.setMap(map);
  // 지도에 클릭 이벤트를 등록합니다
@@ -47,3 +43,15 @@ marker.setPosition(latlng);
  var resultDiv = document.getElementById('clickLatlng');
  resultDiv.innerHTML = message;
  });
+
+
+ // 마커를 담을 배열입니다
+var markers = [];
+ // 장소 검색 객체를 생성합니다
+var ps = new kakao.maps.services.Places();
+ // 검색 결과 목록이나 마커를 클릭했을 때 장소명을 표출할 인포윈도우를 생성합니다
+var infowindow = new kakao.maps.InfoWindow({zIndex:1});
+ // 키워드로 장소를 검색합니다
+searchPlaces();
+ // 생략…
+
